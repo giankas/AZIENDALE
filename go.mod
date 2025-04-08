@@ -1,6 +1,6 @@
 module github.com/giankas/AZIENDALE
 
-go 1.24.1
+go 1.18
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
