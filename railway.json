@@ -1,22 +1,16 @@
 {
-  "services": [
+  "projects": [
     {
-      "serviceName": "backend",
-      "path": "backend",
-      "buildCommand": "go build",
-      "startCommand": "go run main.go",
-      "envVars": {
-        "PORT": "8080"
-      }
-    },
-    {
-      "serviceName": "database",
-      "startCommand": "postgres",
-      "envVars": {
-        "POSTGRES_USER": "postgres",
-        "POSTGRES_PASSWORD": "postgres",
-        "POSTGRES_DB": "postgres"
-      }
+      "name": "backend",
+      "deployments": [
+        {
+          "name": "go-service",
+          "type": "go",
+          "env": {
+            "PORT": "8080"
+          }
+        }
+      ]
     }
   ]
 }
