@@ -1,20 +1,18 @@
-# Usa un'immagine di base ufficiale di Go
-FROM golang:1.18-alpine
-
-# Imposta la directory di lavoro
+FROM golang:1.20-alpine AS builder
 WORKDIR /app
 
-# Copia il codice sorgente nel container
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o app main.go
 
-# Installa le dipendenze Go
-RUN go mod tidy
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /app
 
-# Costruisce il progetto Go
-RUN go build -o main .
+COPY --from=builder /app/app .
+COPY --from=builder /app/frontend ./frontend
 
-# Esponi la porta 8080
 EXPOSE 8080
-
-# Esegui l'applicazione Go
-CMD ["./main"]
+CMD ["./app"]
