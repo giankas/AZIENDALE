@@ -1,0 +1,24 @@
+# Dipendenze Node/Angular
+node_modules/
+frontend/angular/dist/
+ECHO disattivato.
+# File di log e output build
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+ECHO disattivato.
+# File compilati Go
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+ECHO disattivato.
+# Configurazioni environment e IDE
+.env
+.vscode/
+.idea/
